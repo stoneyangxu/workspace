@@ -4,6 +4,6 @@
     type="text"
     class="todo-input form-control col-md-12"
     placeholder="Please input todo title..."
-    (input)="newTodoItem(newTodoInput.value)"
+    (keyup.enter)="newTodoItem(newTodoInput.value); newTodoInput.value = ''"
   />
 </div>

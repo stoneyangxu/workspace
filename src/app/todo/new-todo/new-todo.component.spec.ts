@@ -34,16 +34,4 @@ describe('NewTodoComponent', () => {
     expect(el.classList).toContain('col-md-12');
   });
 
-  it('should call newTodoItem method when input event', () => {
-
-    const spy = spyOn(component, 'newTodoItem');
-
-    fixture.detectChanges();
-
-    const el = fixture.debugElement.query(By.css('.todo-input')).nativeElement;
-    el.value = 'new todo title';
-    el.dispatchEvent(new Event('input'));
-
-    expect(spy).toHaveBeenCalled();
-  });
 });
