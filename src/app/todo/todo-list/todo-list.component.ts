@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { TodoItem } from 'app/todo/model/todo-item';
-import * as moment from 'moment';
-import { TodoStatus } from 'app/todo/model/todo-status.enum';
+import {Component, OnInit} from '@angular/core';
+import {TodoItem} from 'app/todo/model/todo-item';
+import {TodoService} from '../service/todo.service';
 
 @Component({
   selector: 'todo-list',
@@ -10,18 +9,16 @@ import { TodoStatus } from 'app/todo/model/todo-status.enum';
 })
 export class TodoListComponent implements OnInit {
 
-  todoList: TodoItem[] = [
-    {
-      id: 1,
-      title: 'todo1',
-      createTime: moment().unix(),
-      status: TodoStatus.NEW
-    }
-  ];
+  todoList: TodoItem[] = [];
 
-  constructor() { }
+  constructor(
+    private todoService: TodoService
+  ) { }
 
   ngOnInit() {
+    this.todoService.getTodoItemList().then(todoItemList => {
+      this.todoList = todoItemList;
+    });
   }
 
 }
