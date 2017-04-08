@@ -1,3 +1,9 @@
-<p>
-  new-todo works!
-</p>
+<div class="form-group">
+  <input
+    #newTodoInput
+    type="text"
+    class="todo-input form-control col-md-12"
+    placeholder="Please input todo title..."
+    (input)="newTodoItem(newTodoInput.value)"
+  />
+</div>
