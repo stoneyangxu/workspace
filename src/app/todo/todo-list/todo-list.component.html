@@ -1,5 +1,6 @@
-<ul class="table">
-  <li *ngFor="let todo of todoList" class="row">
+<ul class="list-group">
+  <li *ngFor="let todo of todoList"
+    class="list-group-item">
     {{todo | json}}
   </li>
 </ul>

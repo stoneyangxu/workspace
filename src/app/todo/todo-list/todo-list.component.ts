@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoItem } from 'app/todo/model/todo-item';
 import * as moment from 'moment';
+import { TodoStatus } from 'app/todo/model/todo-status.enum';
 
 @Component({
   selector: 'todo-list',
@@ -13,7 +14,8 @@ export class TodoListComponent implements OnInit {
     {
       id: 1,
       title: 'todo1',
-      createTime: moment().unix()
+      createTime: moment().unix(),
+      status: TodoStatus.NEW
     }
   ];
 
