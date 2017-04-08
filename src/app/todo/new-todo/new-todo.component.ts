@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {TodoItem} from '../model/todo-item';
+import {Component, OnInit} from '@angular/core';
+import {TodoService} from '../service/todo.service';
+import * as moment from 'moment';
+import {TodoStatus} from '../model/todo-status.enum';
 
 @Component({
   selector: 'new-todo',
@@ -8,14 +10,19 @@ import {TodoItem} from '../model/todo-item';
 })
 export class NewTodoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private todoService: TodoService
+  ) { }
 
   ngOnInit() {
   }
 
-
   newTodoItem(title: string) {
-
+    this.todoService.addTodoItem({
+      title: title,
+      createTime: moment().unix(),
+      status: TodoStatus.NEW
+    });
   }
 
 }

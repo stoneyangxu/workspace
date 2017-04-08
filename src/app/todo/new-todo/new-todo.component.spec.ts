@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NewTodoComponent} from './new-todo.component';
 import {By} from '@angular/platform-browser';
+import {TodoService} from '../service/todo.service';
 
 describe('NewTodoComponent', () => {
   let component: NewTodoComponent;
@@ -9,9 +10,9 @@ describe('NewTodoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewTodoComponent]
-    })
-      .compileComponents();
+      declarations: [NewTodoComponent],
+      providers: [TodoService]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
