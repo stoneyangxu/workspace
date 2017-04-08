@@ -24,11 +24,21 @@ export class TodoService {
   constructor() { }
 
   getTodoItemList(): Promise<TodoItem[]> {
+
+    this.todoList.sort();
+
     return Promise.resolve(this.todoList);
   }
 
   addTodoItem(newTodoItem: TodoItem): Promise<boolean> {
     this.todoList.push(newTodoItem);
+    this.sortList();
     return Promise.resolve(true);
+  }
+
+  private sortList(): void {
+    this.todoList = this.todoList.sort((a, b) => {
+      return b.createTime - a.createTime;
+    });
   }
 }
