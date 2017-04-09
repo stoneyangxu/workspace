@@ -1,6 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
-
-import { TodoService } from './todo.service';
+import {TodoService} from './todo.service';
 import * as moment from 'moment';
 import {TodoStatus} from '../model/todo-status.enum';
 
@@ -24,6 +22,29 @@ const service = new TodoService();
 
     service.addTodoItem(todoItem).then((result) => {
       expect(result).toBeTruthy();
+      done();
+    });
+  });
+
+  it('should find todoItem by id with getTodoItemById', (done) => {
+    service.getTodoItemById(1).then((todoItem) => {
+      expect(todoItem.id).toBe(1);
+      done();
+    });
+  });
+
+  it('should change todoItem status to finished when finishTodoItem is called', (done) => {
+    const newTodoItem = {
+      id: 1,
+      title: 'todo1',
+      createTime: moment().unix(),
+      status: TodoStatus.NEW
+    };
+
+    service.finishTodoItem(newTodoItem);
+
+    service.getTodoItemById(newTodoItem.id).then((todoItem) => {
+      expect(todoItem.status).toBe(TodoStatus.FINISHED);
       done();
     });
   });

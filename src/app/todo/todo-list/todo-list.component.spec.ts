@@ -70,4 +70,26 @@ describe('TodoListComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  it('should change todo status when clicking on new todo item', () => {
+    component.todoList = todoList;
+    fixture.detectChanges();
+
+    const spy = spyOn(component, 'finishTodo');
+
+    const el = fixture.debugElement.query(By.css('.list-group-item-warning')).nativeElement;
+
+    el.click();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call finishTodoItem in todoService', () => {
+
+    const service = fixture.debugElement.injector.get(TodoService);
+    const spy = spyOn(service, 'finishTodoItem');
+
+    component.finishTodo(todoList[0]);
+
+    expect(spy).toHaveBeenCalled();
+  });
 });

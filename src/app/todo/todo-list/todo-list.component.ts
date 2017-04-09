@@ -21,4 +21,8 @@ export class TodoListComponent implements OnInit {
     });
   }
 
+  finishTodo(todoItem: TodoItem) {
+    this.todoService.finishTodoItem(todoItem);
+  }
+
 }

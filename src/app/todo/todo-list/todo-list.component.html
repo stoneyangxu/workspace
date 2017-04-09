@@ -2,6 +2,7 @@
   <li *ngFor="let todo of todoList"
       class="list-group-item"
       [ngClass]="{'list-group-item-warning': todo.status === 0, 'list-group-item-success': todo.status === 1}"
+      (click)="finishTodo(todo)"
   >
     <todo-item [todoItem]="todo"></todo-item>
   </li>
