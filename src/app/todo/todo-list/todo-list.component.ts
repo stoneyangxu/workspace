@@ -22,7 +22,9 @@ export class TodoListComponent implements OnInit {
 
   finishTodo(todoItem: TodoItem) {
     if (todoItem.status === TodoStatus.NEW) {
-      this.todoService.finishTodoItem(todoItem);
+      this.todoService.finishTodoItem(todoItem).then(result => {
+        this.refreshTodoList();
+      });
     }
   }
 

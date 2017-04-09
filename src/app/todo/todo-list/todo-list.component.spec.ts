@@ -95,7 +95,6 @@ describe('TodoListComponent', () => {
     const spy = spyOn(component, 'finishTodo');
 
     const el = fixture.debugElement.query(By.css('.list-group-item-warning')).nativeElement;
-
     el.click();
 
     expect(spy).toHaveBeenCalled();
@@ -135,4 +134,15 @@ describe('TodoListComponent', () => {
     });
   }));
 
+  it('should refresh todo list when a todo status is updated', (done) => {
+    const spy = spyOn(component, 'refreshTodoList');
+    component.todoList = todoList;
+
+    fixture.detectChanges();
+
+    const el = fixture.debugElement.query(By.css('.list-group-item-warning')).nativeElement;
+    el.click();
+
+    expect(spy).toHaveBeenCalled();
+  });
 });
