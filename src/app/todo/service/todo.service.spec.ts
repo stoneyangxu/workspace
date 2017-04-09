@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import {TodoStatus} from '../model/todo-status.enum';
 
 describe('TodoService', () => {
-const service = new TodoService();
+  const service = new TodoService();
 
   it('should return a promise with TodoItem list', (done) => {
     service.getTodoItemList().then((todoItemList) => {
@@ -45,6 +45,22 @@ const service = new TodoService();
 
     service.getTodoItemById(newTodoItem.id).then((todoItem) => {
       expect(todoItem.status).toBe(TodoStatus.FINISHED);
+      done();
+    });
+  });
+
+  it('should update todoItem status to current time when finishTodoItem is called', (done) => {
+    const newTodoItem = {
+      id: 1,
+      title: 'todo1',
+      createTime: moment().unix(),
+      status: TodoStatus.NEW
+    };
+
+    service.finishTodoItem(newTodoItem);
+
+    service.getTodoItemById(newTodoItem.id).then((todoItem) => {
+      expect(todoItem.finishTime).toBeDefined();
       done();
     });
   });

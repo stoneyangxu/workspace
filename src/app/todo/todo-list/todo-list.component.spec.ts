@@ -20,7 +20,7 @@ describe('TodoListComponent', () => {
       status: TodoStatus.NEW
     },
     {
-      id: 1,
+      id: 2,
       title: 'todo2',
       createTime: moment().unix(),
       status: TodoStatus.FINISHED
@@ -92,4 +92,17 @@ describe('TodoListComponent', () => {
 
     expect(spy).toHaveBeenCalled();
   });
+
+  it('should call finishTodoItem only if todo is NEW', () => {
+
+    const service = fixture.debugElement.injector.get(TodoService);
+    const spy = spyOn(service, 'finishTodoItem');
+
+    component.finishTodo(todoList[1]);
+    expect(spy).not.toHaveBeenCalled();
+
+    component.finishTodo(todoList[0]);
+    expect(spy).toHaveBeenCalled();
+  });
+
 });

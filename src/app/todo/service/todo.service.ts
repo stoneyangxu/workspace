@@ -47,6 +47,7 @@ export class TodoService {
     this.todoList.forEach(item => {
       if (todoItem.id === item.id) {
         item.status = TodoStatus.FINISHED;
+        item.finishTime = moment().unix();
       }
     });
   }
