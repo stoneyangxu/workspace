@@ -1,6 +1,10 @@
 {
   "/api/todos": {
-    "target": "http://localhost:3000/todos",
+    "target": "http://localhost:3000",
+    "secure": false
+  },
+  "/api/todos/**": {
+    "target": "http://localhost:3000",
     "secure": false
   }
 }

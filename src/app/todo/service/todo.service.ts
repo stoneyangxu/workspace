@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { TodoStatus } from 'app/todo/model/todo-status.enum';
 import { TodoItem } from 'app/todo/model/todo-item';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -10,6 +10,7 @@ import 'rxjs/add/operator/toPromise';
 export class TodoService {
 
   private todosUrl = 'api/todos';
+  private headers = new Headers({ 'Content-Type': 'application/json' });
 
   todoList: TodoItem[] = [
     {
@@ -30,31 +31,38 @@ export class TodoService {
   }
 
   getTodoItemList(): Promise<TodoItem[]> {
+
     return this.http.get(this.todosUrl)
       .toPromise()
-      .then((response) => response.json().data as TodoItem[])
+      .then((response) => response.json() as TodoItem[])
       .catch((error: any) => Promise.reject(error.message || error));
   }
 
   getTodoItemById(id: number): Promise<TodoItem> {
-    return Promise.resolve(this.todoList.find(todoItem => {
-      return todoItem.id === id;
-    }));
+    return this.http.get(`${this.todosUrl}/${id}`)
+      .toPromise()
+      .then(response => response.json() as TodoItem)
+      .catch((error: any) => Promise.reject(error.message || error));
   }
 
   addTodoItem(newTodoItem: TodoItem): Promise<boolean> {
-    this.todoList.push(newTodoItem);
-    this.sortList();
-    return Promise.resolve(true);
+
+    return this.http.post(this.todosUrl, JSON.stringify(newTodoItem), { headers: this.headers })
+      .toPromise()
+      .then(response => true)
+      .catch((error: any) => Promise.reject(error.message || error));
+
   }
 
-  finishTodoItem(todoItem: TodoItem): void {
-    this.todoList.forEach(item => {
-      if (todoItem.id === item.id) {
-        item.status = TodoStatus.FINISHED;
-        item.finishTime = moment().unix();
-      }
-    });
+  finishTodoItem(todoItem: TodoItem): Promise<boolean> {
+
+    todoItem.status = TodoStatus.FINISHED;
+    todoItem.finishTime = moment().unix();
+
+    return this.http.put(`${this.todosUrl}/${todoItem.id}`, JSON.stringify(todoItem), { headers: this.headers })
+      .toPromise()
+      .then(response => true)
+      .catch(error => Promise.reject(error.message || error));
   }
 
   private sortList(): void {

@@ -6,7 +6,8 @@ import {By} from '@angular/platform-browser';
 import * as moment from 'moment';
 import {TodoStatus} from 'app/todo/model/todo-status.enum';
 import {TodoService} from '../service/todo.service';
-import {TodoItemComponent} from '../todo-item/todo-item.component';
+import { TodoItemComponent } from '../todo-item/todo-item.component';
+import { HttpModule } from '@angular/http';
 
 describe('TodoListComponent', () => {
   let component: TodoListComponent;
@@ -29,6 +30,7 @@ describe('TodoListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [HttpModule],
       declarations: [TodoListComponent, TodoItemComponent],
       providers: [TodoService]
     })
