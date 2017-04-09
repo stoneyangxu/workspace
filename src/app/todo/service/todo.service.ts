@@ -32,6 +32,8 @@ export class TodoService {
 
   getTodoItemList(): Promise<TodoItem[]> {
 
+    console.log('>>>>>>>>>>>>>>>');
+
     return this.http.get(this.todosUrl)
       .toPromise()
       .then((response) => response.json() as TodoItem[])
