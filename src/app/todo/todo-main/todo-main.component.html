@@ -1,2 +1,2 @@
-<new-todo></new-todo>
-<todo-list></todo-list>
+<new-todo (newTodoIsAdded)="todoListComponent.refreshTodoList()"></new-todo>
+<todo-list #todoListComponent></todo-list>

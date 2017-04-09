@@ -6,6 +6,7 @@ import { NewTodoComponent } from '../new-todo/new-todo.component';
 import { TodoService } from '../service/todo.service';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { HttpModule } from '@angular/http';
+import { fakeAsync } from '@angular/core/testing';
 
 describe('TodoMainComponent', () => {
   let component: TodoMainComponent;
@@ -30,7 +31,12 @@ describe('TodoMainComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should refresh todo list when a new todo is added', () => {
+  it('should refresh todo list when a new todo is added', fakeAsync((done) => {
+    const spy = spyOn(component.todoListComponent, 'refreshTodoList');
 
-  });
+    component.newTodoComponent.newTodoIsAdded.emit(true);
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalled();
+  }));
 });
