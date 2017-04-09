@@ -29,4 +29,8 @@ describe('TodoMainComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should refresh todo list when a new todo is added', () => {
+
+  });
 });
