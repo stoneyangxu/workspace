@@ -14,9 +14,6 @@ export class TodoItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if (this.todoItem) {
-      this.currentClass = this.todoItem.status === TodoStatus.NEW ? 'list-group-item-warning' : 'list-group-item-success';
-    }
   }
 
 }
