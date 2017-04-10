@@ -8,11 +8,14 @@ import { TodoStatus } from 'app/todo/model/todo-status.enum';
 import { TodoService } from '../service/todo.service';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { HttpModule } from '@angular/http';
+import { fakeAsync } from '@angular/core/testing';
+import { tick } from '@angular/core/testing';
 
 describe('TodoListComponent', () => {
   let component: TodoListComponent;
   let fixture: ComponentFixture<TodoListComponent>;
   let getTodoItemListSpy;
+  let finishTodoItemSPy;
 
   const currentTime = moment().unix();
 
@@ -58,6 +61,7 @@ describe('TodoListComponent', () => {
 
     const service = fixture.debugElement.injector.get(TodoService);
     getTodoItemListSpy = spyOn(service, 'getTodoItemList').and.returnValue(Promise.resolve(todoList));
+    finishTodoItemSPy = spyOn(service, 'finishTodoItem').and.returnValue(Promise.resolve(true));
 
     fixture.detectChanges();
   });
@@ -101,25 +105,17 @@ describe('TodoListComponent', () => {
   });
 
   it('should call finishTodoItem in todoService', () => {
-
-    const service = fixture.debugElement.injector.get(TodoService);
-    const spy = spyOn(service, 'finishTodoItem');
-
     component.finishTodo(todoList[0]);
-
-    expect(spy).toHaveBeenCalled();
+    expect(finishTodoItemSPy).toHaveBeenCalled();
   });
 
   it('should call finishTodoItem only if todo is NEW', () => {
 
-    const service = fixture.debugElement.injector.get(TodoService);
-    const spy = spyOn(service, 'finishTodoItem');
-
     component.finishTodo(todoList[1]);
-    expect(spy).not.toHaveBeenCalled();
+    expect(finishTodoItemSPy).not.toHaveBeenCalled();
 
     component.finishTodo(todoList[0]);
-    expect(spy).toHaveBeenCalled();
+    expect(finishTodoItemSPy).toHaveBeenCalled();
   });
 
   it('should order todo list by createTime and show new task first', async(() => {
@@ -134,15 +130,19 @@ describe('TodoListComponent', () => {
     });
   }));
 
-  it('should refresh todo list when a todo status is updated', (done) => {
-    const spy = spyOn(component, 'refreshTodoList');
-    component.todoList = todoList;
+  it('should refresh todo list when a todo status is updated', async(() => {
 
+    const service = fixture.debugElement.injector.get(TodoService);
+    const spy = spyOn(component, 'refreshTodoList');
+
+    component.todoList = todoList;
     fixture.detectChanges();
 
     const el = fixture.debugElement.query(By.css('.list-group-item-warning')).nativeElement;
     el.click();
 
-    expect(spy).toHaveBeenCalled();
-  });
+    fixture.whenStable().then(() => {
+      expect(spy).toHaveBeenCalled();
+    });
+  }));
 });
