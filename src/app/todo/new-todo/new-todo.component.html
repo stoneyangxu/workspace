@@ -1,9 +1,14 @@
 <div class="form-group">
-  <input
-    #newTodoInput
-    type="text"
-    class="todo-input form-control col-md-12"
-    placeholder="Please input todo title..."
-    (keyup.enter)="newTodoItem(newTodoInput.value); newTodoInput.value = ''"
-  />
+  <div class="input-group">
+    <div class="input-group-addon">
+      <i class="fa fa-pencil-square-o"></i>
+    </div>
+    <input
+      #newTodoInput
+      type="text"
+      class="todo-input form-control col-md-12"
+      placeholder="Please input todo title..."
+      (keyup.enter)="newTodoItem(newTodoInput.value); newTodoInput.value = ''"
+    />
+  </div>
 </div>

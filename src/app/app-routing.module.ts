@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'todo',
     loadChildren: 'app/todo/todo.module#TodoModule'
+  },
+  {
+    path: 'demo-components',
+    loadChildren: 'app/demo-components/demo-components.module#DemoComponentsModule'
   }
 ];
 
