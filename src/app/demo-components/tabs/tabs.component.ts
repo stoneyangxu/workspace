@@ -20,4 +20,9 @@ export class TabsComponent implements OnInit, AfterContentInit {
       this.tabs.first.active = true;
     }
   }
+
+  selectTab(tab: TabComponent) {
+    this.tabs.forEach(x => x.active = false);
+    tab.active = true;
+  }
 }

@@ -5,13 +5,14 @@ import { TabComponent } from 'app/demo-components/tab/tab.component';
 import { QueryList } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'test-my-tabs',
   template: ''
 })
 export class TestTabsComponent {
+  @ViewChild(TabsComponent) tabs: TabsComponent;
   constructor() { }
 }
 
@@ -57,7 +58,20 @@ describe('TabsComponent', () => {
   });
 
   it('should active the first tab as default', () => {
-    const firstTab = fixture.debugElement.query(By.css('li div'));
-    expect(firstTab.nativeElement.hidden).toBeFalsy();
+    const tabsComponent = component.tabs;
+    expect(tabsComponent.tabs.first.active).toBeTruthy();
+    expect(tabsComponent.tabs.last.active).toBeFalsy();
   });
+
+
+  it('should siwtch tab when clicking the title', () => {
+    const tabTitles = fixture.debugElement.queryAll(By.css('li'));
+    const secondTabTitle = tabTitles[tabTitles.length - 1].nativeElement;
+
+    secondTabTitle.click();
+
+    expect(component.tabs.tabs.first.active).toBeFalsy('the first tab is unactive');
+    expect(component.tabs.tabs.last.active).toBeTruthy('the tab clicked is active');
+  });
+
 });
