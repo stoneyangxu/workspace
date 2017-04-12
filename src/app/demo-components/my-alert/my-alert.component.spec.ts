@@ -12,6 +12,9 @@ import { By } from '@angular/platform-browser';
 })
 export class TestComponent {
   @ViewChild(MyAlertComponent) myAlertComponent: MyAlertComponent;
+
+  closeAlert() {
+  }
 }
 
 describe('MyAlertComponent', () => {
@@ -93,4 +96,18 @@ describe('MyAlertComponent', () => {
     expect(button).not.toBeNull('show close button');
   });
 
+  it('should emit close event when clicking close button', () => {
+    const customFixture = createGenericTestComponent(`
+      <my-alert type='success' (close)="closeAlert()">
+        Message
+      </my-alert>
+    `, TestComponent);
+
+    const spy = spyOn(customFixture.componentInstance, 'closeAlert');
+
+    const button = customFixture.debugElement.query(By.css('button.close')).nativeElement;
+    button.click();
+
+    expect(spy).toHaveBeenCalled();
+  });
 });
