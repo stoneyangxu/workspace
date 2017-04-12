@@ -60,7 +60,7 @@ describe('MyAlertComponent', () => {
     `, TestComponent);
 
     const contentElement = customFixture.debugElement.query(By.css('.alert-content')).nativeElement;
-    expect(contentElement.classList).toContain('bg-success');
+    expect(contentElement.classList).toContain('alert-success');
   });
 
   it('should remove close button if dismissible is false', () => {
@@ -110,4 +110,17 @@ describe('MyAlertComponent', () => {
 
     expect(spy).toHaveBeenCalled();
   });
+
+
+  it('should add alert-dismissible class when dismissible is true', () => {
+    const customFixture = createGenericTestComponent(`
+      <my-alert type='success'>
+        Message
+      </my-alert>
+    `, TestComponent);
+
+    const container = customFixture.debugElement.query(By.css('.alert-content')).nativeElement;
+    expect(container.classList).toContain('alert-dismissible');
+  });
+
 });

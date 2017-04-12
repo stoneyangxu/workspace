@@ -1,4 +1,4 @@
-<div class="alert-content" [ngClass]="'bg-' + type">
+<div class="alert-content" [class]="'alert alert-' + type" [ngClass]="{'alert-dismissible': dismissible}">
   <button *ngIf="dismissible" type="button" class="close" aria-label="Close" (click)="onClose()">
     <span aria-hidden="true">&times;</span>
   </button>
