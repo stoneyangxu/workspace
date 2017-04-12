@@ -5,7 +5,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   templateUrl: './my-alert.component.html',
   styleUrls: ['./my-alert.component.scss']
 })
-export class MyAlertComponent implements OnInit {
+export class MyAlertComponent {
 
   @Input() type: string;
   @Input() dismissible: boolean;
@@ -16,11 +16,7 @@ export class MyAlertComponent implements OnInit {
     this.dismissible = true;
   }
 
-  ngOnInit() {
-  }
-
   onClose() {
     this.close.emit(null);
   }
-
 }
