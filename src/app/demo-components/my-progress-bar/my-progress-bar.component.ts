@@ -9,6 +9,10 @@ export class MyProgressBarComponent {
 
   @Input() value = 0;
   @Input() max = 100;
+  @Input() type = 'info';
+  @Input() showValue: boolean;
+  @Input() striped: boolean;
+  @Input() animated: boolean;
 
   getProgressPercent() {
     return this.value / this.max * 100;

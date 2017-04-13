@@ -1,3 +1,12 @@
 <div class="progress">
-  <div class="progress-bar" [style.width.%]="getProgressPercent()" [attr.aria-valuenow]="getProgressPercent()" role="progressbar"></div>
+  <div
+    [style.width.%]="getProgressPercent()"
+    [attr.aria-valuenow]="getProgressPercent()"
+    [class]="'progress-bar bg-' + type"
+    [ngClass]="{'progress-bar-striped': striped, 'progress-bar-animated': animated}"
+    role="progressbar">
+
+    <span *ngIf="showValue">{{getProgressPercent()}}%</span><ng-content></ng-content>
+
+  </div>
 </div>
