@@ -12,6 +12,9 @@ import { MyHighlightDirective } from './attribute-directive/my-highlight.directi
 import { DisplayTimeComponent } from './load-component/display-time/display-time.component';
 import { HolderComponent } from './load-component/holder/holder.component';
 import { DtPlaceholderDirective } from './load-component/dt-placeholder.directive';
+import { MyUnlessDirective } from './structural-directive/my-unless.directive';
+import { DemoPopupComponent } from './demo-popup/demo-popup.component';
+import { PopupContentComponent } from './demo-popup/popup-content/popup-content.component';
 
 @NgModule({
   imports: [
@@ -28,10 +31,14 @@ import { DtPlaceholderDirective } from './load-component/dt-placeholder.directiv
     MyHighlightDirective,
     DisplayTimeComponent,
     HolderComponent,
-    DtPlaceholderDirective
+    DtPlaceholderDirective,
+    MyUnlessDirective,
+    DemoPopupComponent,
+    PopupContentComponent
   ],
   entryComponents: [
-    DisplayTimeComponent
+    DisplayTimeComponent,
+    PopupContentComponent
   ]
 })
 export class DemoComponentsModule { }

@@ -5,6 +5,8 @@ import { Directive, ViewContainerRef } from '@angular/core';
 })
 export class DtPlaceholderDirective {
 
-  constructor(public viewContainerRef: ViewContainerRef) { }
+  constructor(public viewContainerRef: ViewContainerRef) {
+    console.log(this.viewContainerRef);
+  }
 
 }
