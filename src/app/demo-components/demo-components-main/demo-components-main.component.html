@@ -2,7 +2,7 @@
   demo-components-main works!
 </p>
 
-<my-tabs>
+<!--<my-tabs>
   <my-tab tabTitle="tab1">
     Tab 1 content
   </my-tab>
@@ -24,4 +24,34 @@
 <div *myUnless="false">Content</div>
 <div *myUnless="true">Content</div>
 
-<demo-popup></demo-popup>
+<demo-popup></demo-popup>-->
+<!--
+<button #hostButton class="btn">A button</button>
+
+<div #toptipWin class="tooltip show">
+  <div class="tooltip-inner">
+    Content in tooltip!
+  </div>
+</div>
+
+<tooltip-window>Contents in targs.</tooltip-window>-->
+
+<!--<button myTooltip="Tooltip content.">Button</button>
+
+<button [myTooltip]="tooltipTemplate" placement="right">Button</button>
+<ng-template #tooltipTemplate>
+  Contents in a template!
+</ng-template>-->
+
+
+<button [myTooltip]="tooltipTemplate" #t="myTooltip">Button</button>
+<ng-template #tooltipTemplate let-name="name">
+  Contents in a template - {{name}} !
+</ng-template>
+
+<button type="button" class="btn btn-secondary" (click)="t.open({ name: 'Bonjour' })">
+  French
+</button>
+<button type="button" class="btn btn-secondary" (click)="t.open({ name: 'Gutentag' })">
+  German
+</button>

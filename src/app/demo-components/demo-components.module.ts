@@ -15,6 +15,7 @@ import { DtPlaceholderDirective } from './load-component/dt-placeholder.directiv
 import { MyUnlessDirective } from './structural-directive/my-unless.directive';
 import { DemoPopupComponent } from './demo-popup/demo-popup.component';
 import { PopupContentComponent } from './demo-popup/popup-content/popup-content.component';
+import { TooltipWindowComponent } from './my-tooltip/tooltip-window/tooltip-window.component';
 
 @NgModule({
   imports: [
@@ -34,11 +35,13 @@ import { PopupContentComponent } from './demo-popup/popup-content/popup-content.
     DtPlaceholderDirective,
     MyUnlessDirective,
     DemoPopupComponent,
-    PopupContentComponent
+    PopupContentComponent,
+    TooltipWindowComponent
   ],
   entryComponents: [
     DisplayTimeComponent,
-    PopupContentComponent
+    PopupContentComponent,
+    TooltipWindowComponent
   ]
 })
 export class DemoComponentsModule { }

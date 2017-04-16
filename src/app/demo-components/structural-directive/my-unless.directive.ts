@@ -15,7 +15,6 @@ export class MyUnlessDirective {
       this.viewContainerRef.clear();
     } else {
       const embeddedViewRef = this.viewContainerRef.createEmbeddedView(this.tempalteRef);
-      console.log(this.tempalteRef, this.viewContainerRef, embeddedViewRef);
     }
   }
 }
