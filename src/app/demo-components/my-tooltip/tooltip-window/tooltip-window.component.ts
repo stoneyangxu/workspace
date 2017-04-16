@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'tooltip-window',
   templateUrl: './tooltip-window.component.html',
-  styleUrls: ['./tooltip-window.component.scss']
+  styleUrls: ['./tooltip-window.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipWindowComponent implements OnInit {
 

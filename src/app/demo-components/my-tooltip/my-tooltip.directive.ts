@@ -7,6 +7,7 @@ import {
 import { PopupService } from 'app/demo-components/utils/popup';
 import { TooltipWindowComponent } from 'app/demo-components/my-tooltip/tooltip-window/tooltip-window.component';
 import { positionElements } from 'app/demo-components/utils/positioning';
+import { listenToTriggers } from 'app/demo-components/utils/triggers';
 
 let nextId = 0;
 
@@ -18,8 +19,9 @@ export class MyTooltipDirective implements OnInit, OnDestroy {
 
 
   @Input() myTooltip: string | TemplateRef<any>;
-  @Input() placement = 'top';
+  @Input() placement: 'top' | 'bottom' | 'left' | 'right' = 'top';
   @Input() container: string;
+  @Input() triggers = 'mouseover:mouseout';
 
   @Output() shown = new EventEmitter();
   @Output() hidden = new EventEmitter();
@@ -29,6 +31,7 @@ export class MyTooltipDirective implements OnInit, OnDestroy {
 
   private ngbTooltipWindowId = `ngb-tooltip-${nextId++}`;
   private zoneSubscription: any;
+  private unregisterListenersFn: any;
 
   constructor(
     private elementRef: ElementRef,
@@ -58,31 +61,44 @@ export class MyTooltipDirective implements OnInit, OnDestroy {
         );
       }
     });
+
+    this.unregisterListenersFn = listenToTriggers(
+      this.renderer,
+      this.elementRef.nativeElement,
+      this.triggers,
+      this.open.bind(this),
+      this.close.bind(this),
+      this.toggle.bind(this)
+    );
   }
 
   ngOnDestroy(): void {
     if (this.zoneSubscription) {
       this.close();
+      this.unregisterListenersFn();
       this.zoneSubscription.unsubscribe();
     }
   }
 
-  @HostListener('mouseover') open(context?: any) {
+  open(context?: any) {
     this.windowRef = this.popupService.open(this.myTooltip, context);
     this.windowRef.instance.placement = this.placement;
     this.windowRef.instance.id = this.ngbTooltipWindowId;
 
     this.renderer.setElementAttribute(this.elementRef.nativeElement, 'aria-describedby', this.ngbTooltipWindowId);
 
-
     if (this.container === 'body') {
       window.document.querySelector(this.container).appendChild(this.windowRef.location.nativeElement);
     }
 
+    // we need to manually invoke change detection since events registered via
+    // Renderer::listen() - to be determined if this is a bug in the Angular itself
+    this.windowRef.changeDetectorRef.markForCheck();
+
     this.shown.emit();
   }
 
-  @HostListener('mouseout') close() {
+  close() {
     if (this.windowRef) {
       this.popupService.close();
       this.windowRef = null;
@@ -90,6 +106,14 @@ export class MyTooltipDirective implements OnInit, OnDestroy {
       this.renderer.setElementAttribute(this.elementRef.nativeElement, 'aria-describedby', null);
 
       this.hidden.emit();
+    }
+  }
+
+  toggle() {
+    if (this.windowRef) {
+      this.close();
+    } else {
+      this.open();
     }
   }
 

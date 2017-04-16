@@ -57,23 +57,7 @@ describe('MyTooltipDirective', () => {
     expect(component).toBeTruthy();
   });
 
-
-  it('should call open method when mouseover', () => {
-    fixture = createGenericTestComponent(`
-      <button myTooltip="Tooltip content.">Button</button>
-    `, TestComponent);
-    component = fixture.componentInstance;
-
-    const spy = spyOn(component.myTooltipDirective, 'open');
-
-    const button: HTMLElement = fixture.debugElement.query(By.css('button')).nativeElement;
-    button.dispatchEvent(new Event('mouseover'));
-
-    expect(spy).toHaveBeenCalled();
-  });
-
-
-  it('should show the tooltip when mose moves over the element', () => {
+  it('should show the tooltip when mouseover moves over the element', () => {
     fixture = createGenericTestComponent(`
       <button myTooltip="Tooltip content.">Button</button>
     `, TestComponent);
@@ -204,12 +188,46 @@ describe('MyTooltipDirective', () => {
 
     component = fixture.componentInstance;
 
-    component.myTooltipDirective.open({name: 'Stone'});
+    component.myTooltipDirective.open({ name: 'Stone' });
 
     fixture.detectChanges();
 
     const tooltip = fixture.debugElement.query(By.css('.tooltip-inner')).nativeElement;
     expect(tooltip.textContent).toContain('Stone');
+  });
+
+  it('should support triggers like `click:blur`', () => {
+    fixture = createGenericTestComponent(`
+      <button myTooltip="Content" triggers="click:blur">Button</button>
+    `, TestComponent);
+
+    component = fixture.componentInstance;
+
+    const button: HTMLElement = fixture.debugElement.query(By.css('button')).nativeElement;
+
+    button.dispatchEvent(new Event('click'));
+    expect(component.myTooltipDirective.isOpen()).toBeTruthy();
+
+    button.dispatchEvent(new Event('blur'));
+    expect(component.myTooltipDirective.isOpen()).toBeFalsy();
+  });
+
+
+  it('should support toggle method to open and close tip', () => {
+    fixture = createGenericTestComponent(`
+      <button myTooltip="Content">Button</button>
+    `, TestComponent);
+
+    component = fixture.componentInstance;
+    const directive = component.myTooltipDirective;
+
+    expect(directive.isOpen()).toBeFalsy();
+
+    directive.toggle();
+    expect(directive.isOpen()).toBeTruthy();
+
+    directive.toggle();
+    expect(directive.isOpen()).toBeFalsy();
   });
 
 });
