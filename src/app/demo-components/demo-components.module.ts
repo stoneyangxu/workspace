@@ -18,11 +18,14 @@ import { PopupContentComponent } from './demo-popup/popup-content/popup-content.
 import { TooltipWindowComponent } from './my-tooltip/tooltip-window/tooltip-window.component';
 import { MyPopoverDirective } from './my-popover/my-popover.directive';
 import { PopoverWindowComponent } from './my-popover/popover-window/popover-window.component';
+import { HeroDetailComponent } from './react-form/hero-detail/hero-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    DemoComponentsRoutingModule
+    DemoComponentsRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     DemoComponentsMainComponent,
@@ -40,7 +43,8 @@ import { PopoverWindowComponent } from './my-popover/popover-window/popover-wind
     PopupContentComponent,
     TooltipWindowComponent,
     MyPopoverDirective,
-    PopoverWindowComponent
+    PopoverWindowComponent,
+    HeroDetailComponent
   ],
   entryComponents: [
     DisplayTimeComponent,
