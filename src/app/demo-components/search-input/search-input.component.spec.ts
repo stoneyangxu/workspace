@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class TestComponent {
   @ViewChild(SearchInputComponent) searchInputComponent: SearchInputComponent;
+
+  onSearch() {
+  }
 }
 
 function getInput(fixture): DebugElement {
@@ -66,7 +69,7 @@ describe('SearchInputComponent', () => {
     `, TestComponent);
     component = fixture.componentInstance;
 
-    const spy = spyOn(component.searchInputComponent, 'search');
+    const spy = spyOn(component.searchInputComponent, 'doSearch');
 
     const inputElement: HTMLInputElement = getInput(fixture).nativeElement;
   });
@@ -78,7 +81,7 @@ describe('SearchInputComponent', () => {
     `, TestComponent);
     component = fixture.componentInstance;
 
-    const spy = spyOn(component.searchInputComponent, 'search');
+    const spy = spyOn(component.searchInputComponent, 'doSearch');
 
     getSearchButton(fixture).nativeElement.click();
     expect(spy).toHaveBeenCalled();
@@ -91,5 +94,38 @@ describe('SearchInputComponent', () => {
     `, TestComponent);
     const inputElement = getInput(fixture).nativeElement;
     expect(inputElement.getAttribute('placeholder')).toBe('Pleace enter keywords.');
+  });
+
+
+  it('should emit search event when searching', () => {
+    fixture = createGenericTestComponent(`
+      <search-input placeholder="Pleace enter keywords." (search)="onSearch($event)"></search-input>
+    `, TestComponent);
+
+    component = fixture.componentInstance;
+
+    const spy = spyOn(component, 'onSearch');
+
+    component.searchInputComponent.keywords = 'search keywords';
+    component.searchInputComponent.doSearch();
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith('search keywords');
+  });
+
+
+  it('should not emit search event if keywords is blank', () => {
+    fixture = createGenericTestComponent(`
+      <search-input placeholder="Pleace enter keywords." (search)="onSearch($event)"></search-input>
+    `, TestComponent);
+
+    component = fixture.componentInstance;
+
+    const spy = spyOn(component, 'onSearch');
+
+    component.searchInputComponent.keywords = '   ';
+    component.searchInputComponent.doSearch();
+
+    expect(spy).not.toHaveBeenCalled();
   });
 });
