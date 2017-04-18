@@ -19,13 +19,15 @@ import { TooltipWindowComponent } from './my-tooltip/tooltip-window/tooltip-wind
 import { MyPopoverDirective } from './my-popover/my-popover.directive';
 import { PopoverWindowComponent } from './my-popover/popover-window/popover-window.component';
 import { HeroDetailComponent } from './react-form/hero-detail/hero-detail.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MyCollaspeDirective } from './my-collaspe/my-collaspe.directive';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 @NgModule({
   imports: [
     CommonModule,
     DemoComponentsRoutingModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   declarations: [
@@ -46,7 +48,8 @@ import { MyCollaspeDirective } from './my-collaspe/my-collaspe.directive';
     MyPopoverDirective,
     PopoverWindowComponent,
     HeroDetailComponent,
-    MyCollaspeDirective
+    MyCollaspeDirective,
+    SearchInputComponent
   ],
   entryComponents: [
     DisplayTimeComponent,
