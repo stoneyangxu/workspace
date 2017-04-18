@@ -20,6 +20,7 @@ import { MyPopoverDirective } from './my-popover/my-popover.directive';
 import { PopoverWindowComponent } from './my-popover/popover-window/popover-window.component';
 import { HeroDetailComponent } from './react-form/hero-detail/hero-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyCollaspeDirective } from './my-collaspe/my-collaspe.directive';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TooltipWindowComponent,
     MyPopoverDirective,
     PopoverWindowComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    MyCollaspeDirective
   ],
   entryComponents: [
     DisplayTimeComponent,

@@ -59,9 +59,11 @@
 
 <button myTooltip="Content" triggers="click:blur">Button</button>
 
+<button myPopover="Contents" popoverTitle="Title" placement="right" triggers="hover">Button</button>
 
 -->
 
 <!--<hero-detail></hero-detail>-->
 
-<button myPopover="Contents" popoverTitle="Title" placement="right" triggers="hover">Button</button>
+<div [myCollaspe]>Shown Content</div>
+<div [myCollaspe]="true">Content</div>
