@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { states } from 'app/demo-components/react-form/data-model';
 
 @Component({
@@ -17,14 +17,23 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.heroForm = this.fb.group({
       name: ['', Validators.required],
-      address: this.fb.group({
-        street: '',
-        city: '',
-        state: '',
-        zip: ''
-      }),
-      power: '',
-      sidekick: ''
+      secretLairs: this.fb.array([])
     });
+
+    const addresses = [
+      {street: '123 Main',  city: 'Anywhere', state: 'CA',  zip: '94801'},
+      {street: '456 Maple', city: 'Somewhere', state: 'VA', zip: '23226'},
+    ];
+
+    const addressesGroups = addresses.map(address => this.fb.group(address));
+    const addressFormArray = this.fb.array(addressesGroups);
+
+    this.heroForm.setControl('secretLairs', addressFormArray);
+
+    console.log(this.heroForm.get('secretLairs'));
+  }
+
+  get secretLairs() {
+    return this.heroForm.get('secretLairs') as FormArray;
   }
 }
