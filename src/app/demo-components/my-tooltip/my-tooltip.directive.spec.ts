@@ -177,7 +177,6 @@ describe('MyTooltipDirective', () => {
     expect(closeSpy).toHaveBeenCalled();
   });
 
-
   it('should pass a context when opening the tooltip', () => {
     fixture = createGenericTestComponent(`
       <button [myTooltip]="tooltipTemplate">Button</button>

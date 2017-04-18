@@ -147,4 +147,21 @@ describe('MyPopoverDirective', () => {
     expect(popover.nativeElement.classList).toContain('popover-right');
   });
 
+
+  it('should emit shown and hidden events', () => {
+    fixture = createGenericTestComponent(`
+      <button myPopover="Contents" popoverTitle="Title" (shown)="onOpen()" (hidden)="onClose()">Button</button>
+    `, TestComponent);
+    component = fixture.componentInstance;
+
+    const openSpy = spyOn(component, 'onOpen');
+    const closeSpy = spyOn(component, 'onClose');
+
+    component.myPopoverDirective.open();
+    expect(openSpy).toHaveBeenCalled();
+
+    component.myPopoverDirective.close();
+    expect(closeSpy).toHaveBeenCalled();
+  });
+
 });
