@@ -1,6 +1,6 @@
 <input class="form-control" [attr.placeholder]="placeholder" [(ngModel)]="keywords" (keyup.enter)="doSearch()"/>
 <span class="input-group-btn">
-  <button class="btn btn-secondary" type="button" (click)="doSearch()" >
+  <button class="btn btn-secondary" i18n-title="button-title|Title shown when mouseover" title="Search" type="button" (click)="doSearch()" >
     <i class="fa fa-search"></i>
   </button>
 </span>
