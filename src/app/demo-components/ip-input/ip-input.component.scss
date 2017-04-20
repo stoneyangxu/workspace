@@ -1,0 +1,27 @@
+.ip-input {
+  border: 1px solid black;
+  border-radius: 4px;
+}
+.ip-input-block {
+  display: inline-block;
+}
+
+.ip-input-block input {
+  border: none;
+  outline: none;
+  text-align: center;
+  width: calc(100% - 10px);
+}
+
+.ip-input-for-ipv4 .ip-input-block {
+  width: calc(25%);
+}
+
+.ip-input-for-ipv6 .ip-input-block {
+  width: calc(12.5%);
+}
+
+.ip-input-sep {
+  display: inline-block;
+  width: 5px;
+}

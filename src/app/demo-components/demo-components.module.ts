@@ -22,6 +22,7 @@ import { HeroDetailComponent } from './react-form/hero-detail/hero-detail.compon
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MyCollaspeDirective } from './my-collaspe/my-collaspe.directive';
 import { SearchInputComponent } from './search-input/search-input.component';
+import { IpInputComponent } from './ip-input/ip-input.component';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { SearchInputComponent } from './search-input/search-input.component';
     PopoverWindowComponent,
     HeroDetailComponent,
     MyCollaspeDirective,
-    SearchInputComponent
+    SearchInputComponent,
+    IpInputComponent
   ],
   entryComponents: [
     DisplayTimeComponent,
