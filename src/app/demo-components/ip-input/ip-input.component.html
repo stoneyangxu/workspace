@@ -1,6 +1,8 @@
 <div [class]="'ip-input ip-input-for-' + mode">
   <div class="ip-input-block" *ngFor="let block of blocks; let i = index; let last = last">
-    <input type="text" />
+    <input #input type="text"
+      (keypress)="onKeyPress($event, i)"
+    />
     <div *ngIf="!last" class="ip-input-sep">{{ vX.SEP }}</div>
   </div>
 </div>

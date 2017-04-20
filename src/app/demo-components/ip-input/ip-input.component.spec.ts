@@ -4,6 +4,9 @@ import { IpInputComponent } from './ip-input.component';
 import { ViewChild, Component } from '@angular/core';
 import { createGenericTestComponent } from 'test/common';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { tick } from '@angular/core/testing';
+import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'test-component',
@@ -11,6 +14,13 @@ import { By } from '@angular/platform-browser';
 })
 export class TestComponent {
   @ViewChild(IpInputComponent) ipInputComponent: IpInputComponent;
+
+  value: string;
+}
+
+function getInput(fixture, index: number) {
+  const inputs = fixture.debugElement.queryAll(By.css('input'));
+  return inputs[index].nativeElement;
 }
 
 describe('IpInputComponent', () => {
@@ -19,6 +29,7 @@ describe('IpInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [TestComponent, IpInputComponent]
     });
   }));
@@ -97,6 +108,46 @@ describe('IpInputComponent', () => {
       const sep = fixture.debugElement.query(By.css('.ip-input-sep')).nativeElement;
       expect(sep.textContent).toBe(':');
     });
+  });
+
+
+  describe('get value', () => {
+
+    it('should get formated value for ipv4', () => {
+      fixture = createGenericTestComponent(`
+        <ip-input></ip-input>
+      `, TestComponent);
+
+      component = fixture.componentInstance;
+
+      component.ipInputComponent.inputs.forEach(ref => ref.nativeElement.value = '192');
+      expect(component.ipInputComponent.value).toBe('192.192.192.192');
+    });
+
+    it('should get formated value for ipv6', () => {
+      fixture = createGenericTestComponent(`
+        <ip-input mode="ipv6"></ip-input>
+      `, TestComponent);
+
+      component = fixture.componentInstance;
+
+      component.ipInputComponent.inputs.forEach(ref => ref.nativeElement.value = '00');
+      expect(component.ipInputComponent.value).toBe('00:00:00:00:00:00:00:00');
+    });
+  });
+
+
+  describe('valid charactor', () => {
+
+    it('should only support to enter decimal for ipv4', () => {
+
+    });
+
+
+    it('should only support to enter hex for ipv4', () => {
+
+    });
+
   });
 
 });
