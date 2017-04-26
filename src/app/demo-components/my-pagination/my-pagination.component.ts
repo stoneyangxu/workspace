@@ -11,7 +11,7 @@ export class MyPaginationComponent implements OnInit {
   @Input() pageSize = 10;
   @Input() directionLinks = false;
   @Input() boundaryLinks = false;
-
+  @Input() disabled = false;
   @Input() page = 1;
 
   @Output() pageChange = new EventEmitter<number>();

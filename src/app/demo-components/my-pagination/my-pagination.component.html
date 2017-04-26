@@ -1,17 +1,17 @@
 <ul class="pagination">
-  <li *ngIf="boundaryLinks" (click)="gotoPage(1)" [class.disabled]="page === 1" class="page-item first-btn">
+  <li *ngIf="boundaryLinks" (click)="gotoPage(1)" [class.disabled]="page === 1 || disabled" class="page-item first-btn">
     <span class="page-link">««</span>
   </li>
-  <li *ngIf="directionLinks" (click)="gotoPage(page - 1)" [class.disabled]="page === 1" class="page-item previous-btn">
+  <li *ngIf="directionLinks" (click)="gotoPage(page - 1)" [class.disabled]="page === 1 || disabled" class="page-item previous-btn">
     <span class="page-link">«</span>
   </li>
-  <li *ngFor="let pageNum of pages" (click)="gotoPage(pageNum)" [class.active]="pageNum === page" class="page-item">
+  <li *ngFor="let pageNum of pages" (click)="gotoPage(pageNum)" [class.active]="pageNum === page" [class.disabled]="disabled" class="page-item">
     <span class="page-link">{{pageNum}}</span>
   </li>
-  <li *ngIf="directionLinks" (click)="gotoPage(page + 1)" [class.disabled]="page === pages.length" class="page-item next-btn">
+  <li *ngIf="directionLinks" (click)="gotoPage(page + 1)" [class.disabled]="page === pages.length || disabled" class="page-item next-btn">
     <span class="page-link">»</span>
   </li>
-  <li *ngIf="boundaryLinks" (click)="gotoPage(pages.length)" [class.disabled]="page === pages.length" class="page-item last-btn">
+  <li *ngIf="boundaryLinks" (click)="gotoPage(pages.length)" [class.disabled]="page === pages.length || disabled" class="page-item last-btn">
     <span class="page-link">»»</span>
   </li>
 </ul>

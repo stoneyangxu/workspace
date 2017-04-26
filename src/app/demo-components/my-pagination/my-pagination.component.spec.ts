@@ -340,4 +340,19 @@ describe('MyPaginationComponent', () => {
 
     expect(instance.page).toBe(5);
   });
+
+  it('should disable pagination with `disabled` property', () => {
+    fixture = createGenericTestComponent(`
+      <my-pagination
+        [collectionSize]="50"
+        [disabled]="true"
+      ></my-pagination>
+    `, TestComponent);
+    component = fixture.componentInstance;
+    instance = component.instance;
+
+    const buttons = fixture.debugElement.queryAll(By.css('.page-item'));
+    const allDisabled = buttons.every(x => x.nativeElement.classList.contains('disabled'));
+    expect(allDisabled).toBeTruthy();
+  });
 });
