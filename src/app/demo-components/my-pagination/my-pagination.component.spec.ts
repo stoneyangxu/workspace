@@ -387,7 +387,7 @@ describe('MyPaginationComponent', () => {
     fixture = createGenericTestComponent(`
       <my-pagination
         [collectionSize]="500"
-        [pageSize]
+        [pageSize]="10"
         [ellipses]="true"
         [maxSize]="5"
       ></my-pagination>
@@ -409,6 +409,35 @@ describe('MyPaginationComponent', () => {
 
     instance.gotoPage(50);
     expect(instance.pages).toEqual([1, -1, 46, 47, 48, 49, 50]);
-
   });
+
+  it('should support rotate', () => {
+    fixture = createGenericTestComponent(`
+      <my-pagination
+        [collectionSize]="500"
+        [pageSize]="10"
+        [rotate]="true"
+        [ellipses]="true"
+        [maxSize]="5"
+      ></my-pagination>
+    `, TestComponent);
+    component = fixture.componentInstance;
+    instance = component.instance;
+
+    instance.gotoPage(1);
+    expect(instance.pages).toEqual([1, 2, 3, 4, 5, -1, 50]);
+
+    instance.gotoPage(5);
+    expect(instance.pages).toEqual([1, -1, 3, 4, 5, 6, 7, -1, 50]);
+
+    // instance.gotoPage(6);
+    // expect(instance.pages).toEqual([1, -1, 6, 7, 8, 9, 10, -1, 50]);
+
+    // instance.gotoPage(45);
+    // expect(instance.pages).toEqual([1, -1, 41, 42, 43, 44, 45, -1, 50]);
+
+    instance.gotoPage(50);
+    expect(instance.pages).toEqual([1, -1, 46, 47, 48, 49, 50]);
+  });
+
 });

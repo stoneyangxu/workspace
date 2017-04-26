@@ -16,6 +16,7 @@ export class MyPaginationComponent implements OnInit {
   @Input() size: 'sm' | '' | 'lg' = '';
   @Input() ellipses = false;
   @Input() maxSize = 5;
+  @Input() rotate = false;
 
   @Output() pageChange = new EventEmitter<number>();
 
@@ -45,12 +46,17 @@ export class MyPaginationComponent implements OnInit {
       this.pages.push(i);
     }
 
-    if (this.maxSize > 0 && this.ellipses) {
-      const [start, end] = this.getRange();
-      console.error(start, end);
-      console.error(this.pages);
+    if (this.maxSize > 0 && this.pageCount > this.maxSize) {
+
+      let start = 0;
+      let end = this.pageCount;
+
+      if (this.rotate) {
+        [start, end] = this.applyRotation();
+      } else {
+        [start, end] = this.getRange();
+      }
       this.pages = this.pages.slice(start, end);
-      console.error(this.pages);
 
       this.setEllipses(start, end);
     }
@@ -77,6 +83,27 @@ export class MyPaginationComponent implements OnInit {
     const page = Math.ceil(this.page / this.maxSize) - 1;
     const start = page * this.maxSize;
     const end = start + this.maxSize;
+
+    return [start, end];
+  }
+
+  private applyRotation(): [number, number] {
+    let start = 0;
+    let end = this.pageCount;
+    const leftOffset = Math.floor(this.maxSize / 2);
+    const rightOffset = this.maxSize % 2 === 0 ? leftOffset - 1 : leftOffset;
+
+    if (this.page <= leftOffset) {
+      // very beginning, no rotation -> [0..maxSize]
+      end = this.maxSize;
+    } else if (this.pageCount - this.page < leftOffset) {
+      // very end, no rotation -> [len-maxSize..len]
+      start = this.pageCount - this.maxSize;
+    } else {
+      // rotate
+      start = this.page - leftOffset - 1;
+      end = this.page + rightOffset;
+    }
 
     return [start, end];
   }
