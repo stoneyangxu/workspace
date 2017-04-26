@@ -1,0 +1,23 @@
+.pagination {
+  display: flex;
+  padding-left: 0px;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+.page-item {
+  cursor: pointer;
+}
+
+.page-item.disabled {
+  color: rgb(99, 108, 114);
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.active {
+  z-index: 2;
+  color: rgb(255, 255, 255);
+  background-color: rgb(2, 117, 216);
+  border-color: rgb(2, 117, 216);
+}

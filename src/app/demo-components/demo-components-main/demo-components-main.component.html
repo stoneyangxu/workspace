@@ -70,11 +70,13 @@
 
 <!--<search-input i18n-placeholder placeholder="Please enter keywords."></search-input>-->
 
-<ip-input #ipv4></ip-input>
+<!--<ip-input #ipv4></ip-input>
 <ip-input #ipv6 mode="ipv6"></ip-input>
 
 <button class='btn' (click)='refresh()'>Refresh</button>
 
 {{ ipv4 | json }}
 
-{{ ipv6 | json }}
+{{ ipv6 | json }}-->
+
+<my-pagination [boundaryLinks]="true" [directionLinks]="true" [collectionSize]="50"></my-pagination>
