@@ -27,7 +27,8 @@ getTestBed().initTestEnvironment(
   platformBrowserDynamicTesting()
 );
 // Then we find all the tests.
-const context = require.context('./app/demo-components/my-dropdown/', true, /\.spec\.ts$/);
+const context = require.context('./app/', true, /\.spec\.ts$/);
+// const context = require.context('./app/demo-components/my-dropdown/', true, /\.spec\.ts$/);
 // And load the modules.
 context.keys().map(context);
 // Finally, start Karma to run the tests.
