@@ -24,6 +24,8 @@ import { MyCollaspeDirective } from './my-collaspe/my-collaspe.directive';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { IpInputComponent } from './ip-input/ip-input.component';
 import { MyPaginationComponent } from './my-pagination/my-pagination.component';
+import { MyRadioGroupDirective } from './my-radio-group/my-radio-group.directive';
+import { MyRadioDirective } from './my-radio-group/my-radio.directive';
 
 @NgModule({
   imports: [
@@ -53,7 +55,9 @@ import { MyPaginationComponent } from './my-pagination/my-pagination.component';
     MyCollaspeDirective,
     SearchInputComponent,
     IpInputComponent,
-    MyPaginationComponent
+    MyPaginationComponent,
+    MyRadioGroupDirective,
+    MyRadioDirective
   ],
   entryComponents: [
     DisplayTimeComponent,
