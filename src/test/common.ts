@@ -1,4 +1,5 @@
-import {TestBed, ComponentFixture} from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 
 export function createGenericTestComponent<T>(html: string, type: {new (...args: any[]): T}): ComponentFixture<T> {
   TestBed.overrideComponent(type, {set: {template: html}});

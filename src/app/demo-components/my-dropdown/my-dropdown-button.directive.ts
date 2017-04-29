@@ -1,4 +1,4 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, ElementRef } from '@angular/core';
 import { MyDropdownDirective } from 'app/demo-components/my-dropdown/my-dropdown.directive';
 
 @Directive({
@@ -6,7 +6,12 @@ import { MyDropdownDirective } from 'app/demo-components/my-dropdown/my-dropdown
 })
 export class MyDropdownButtonDirective {
 
-  constructor(private myDropdown: MyDropdownDirective) { }
+  constructor(
+    private myDropdown: MyDropdownDirective,
+    private elementRef: ElementRef
+  ) {
+    this.myDropdown.toggleElement = this.elementRef;
+  }
 
   @HostListener('click') click() {
     this.myDropdown.toggle();
