@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeroDetailComponent } from './hero-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('HeroDetailComponent', () => {
   let component: HeroDetailComponent;
@@ -8,6 +9,9 @@ describe('HeroDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        ReactiveFormsModule
+      ],
       declarations: [ HeroDetailComponent ]
     })
     .compileComponents();
