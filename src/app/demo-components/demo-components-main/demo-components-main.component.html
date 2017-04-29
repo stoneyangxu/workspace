@@ -89,12 +89,13 @@
 
   <button type="button" myRadio class="btn btn-primary">ButtonRadio</button>-->
 
-<div class="btn-group">
-  <button type="button" class="btn btn-outline-primary dropdown-toggle">
+<div myDropdown class="btn-group">
+  <button myDropdownButton type="button" class="btn btn-outline-primary dropdown-toggle">
     Action
   </button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-  </ul>
+  <div class="dropdown-menu" aria-labelledby="dropdownBasic2">
+    <button class="dropdown-item">Action - 1</button>
+    <button class="dropdown-item">Another Action</button>
+    <button class="dropdown-item">Something else is here</button>
+  </div>
 </div>

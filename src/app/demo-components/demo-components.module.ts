@@ -26,6 +26,8 @@ import { IpInputComponent } from './ip-input/ip-input.component';
 import { MyPaginationComponent } from './my-pagination/my-pagination.component';
 import { MyRadioGroupDirective } from './my-radio-group/my-radio-group.directive';
 import { MyRadioDirective } from './my-radio-group/my-radio.directive';
+import { MyDropdownDirective } from './my-dropdown/my-dropdown.directive';
+import { MyDropdownButtonDirective } from './my-dropdown/my-dropdown-button.directive';
 
 @NgModule({
   imports: [
@@ -57,7 +59,9 @@ import { MyRadioDirective } from './my-radio-group/my-radio.directive';
     IpInputComponent,
     MyPaginationComponent,
     MyRadioGroupDirective,
-    MyRadioDirective
+    MyRadioDirective,
+    MyDropdownDirective,
+    MyDropdownButtonDirective
   ],
   entryComponents: [
     DisplayTimeComponent,
