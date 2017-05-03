@@ -1,0 +1,3 @@
+<button type="button"  (click)="switch()" [disabled]="disabled" class="btn" [ngClass]="{'btn-success': value, 'btn-warning': !value}">
+  {{ getLabel() }}
+</button>

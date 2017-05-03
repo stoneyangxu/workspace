@@ -102,6 +102,13 @@
 
 <hr/>
 
-<my-rating></my-rating>
+<!--<my-rating></my-rating>-->
 
-<switch-button></switch-button>
+<switch-button [(ngModel)]="switchButtonValue"></switch-button>
+{{ switchButtonValue ? 'on' : 'off' }}
+<hr/>
+
+<switch-button [formControl]="switchButtonControl"></switch-button>
+<pre>
+  {{ switchButtonControl | json }}
+</pre>

@@ -1,6 +1,7 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { positionElements } from 'app/demo-components/utils/positioning';
-import { IpInputComponent } from 'app/demo-components/ip-input/ip-input.component';
+import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {positionElements} from 'app/demo-components/utils/positioning';
+import {IpInputComponent} from 'app/demo-components/ip-input/ip-input.component';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'demo-components-main',
@@ -15,9 +16,22 @@ export class DemoComponentsMainComponent implements OnInit {
   ipv4: string;
   ipv6: string;
 
-  constructor() { }
+  switchButtonValue = true;
+
+  switchButtonControl = new FormControl(true);
+
+  constructor() {
+  }
 
   ngOnInit() {
+    setTimeout(() => {
+      // this.switchButtonValue = false;
+      this.switchButtonControl.disable();
+
+      setTimeout(() => {
+        this.switchButtonControl.enable();
+      }, 5000)
+    }, 5000);
     // const pos1 = positionElements(
     //   this.host.nativeElement,
     //   this.target.nativeElement,

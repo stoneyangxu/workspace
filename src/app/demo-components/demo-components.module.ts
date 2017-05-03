@@ -29,12 +29,14 @@ import { MyRadioDirective } from './my-radio-group/my-radio.directive';
 import { MyDropdownDirective } from './my-dropdown/my-dropdown.directive';
 import { MyDropdownButtonDirective } from './my-dropdown/my-dropdown-button.directive';
 import { MyRatingComponent } from './my-rating/my-rating.component';
+import { SwitchButtonComponent } from './switch-button/switch-button.component';
 
 @NgModule({
   imports: [
     CommonModule,
     DemoComponentsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     ReactiveFormsModule
   ],
   declarations: [
@@ -63,7 +65,8 @@ import { MyRatingComponent } from './my-rating/my-rating.component';
     MyRadioDirective,
     MyDropdownDirective,
     MyDropdownButtonDirective,
-    MyRatingComponent
+    MyRatingComponent,
+    SwitchButtonComponent
   ],
   entryComponents: [
     DisplayTimeComponent,
