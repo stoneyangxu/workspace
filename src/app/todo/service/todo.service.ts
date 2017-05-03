@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import * as moment from 'moment';
-import { TodoStatus } from 'app/todo/model/todo-status.enum';
-import { TodoItem } from 'app/todo/model/todo-item';
-import { Http, Headers } from '@angular/http';
+import {Injectable} from "@angular/core";
+import * as moment from "moment";
+import {TodoStatus} from "app/todo/model/todo-status.enum";
+import {TodoItem} from "app/todo/model/todo-item";
+import {Headers, Http} from "@angular/http";
 
-import 'rxjs/add/operator/toPromise';
+import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class TodoService {

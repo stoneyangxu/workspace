@@ -46,7 +46,6 @@ export class IpInputComponent implements OnInit {
     }
 
     return this.inputs.map(ref => {
-      console.error(ref.nativeElement.value);
       return ref.nativeElement.value;
     }).join(this.vX.SEP);
   }
@@ -56,7 +55,6 @@ export class IpInputComponent implements OnInit {
     const key = typeof $event.key === 'string' ? $event.key : String.fromCharCode($event.charCode);
 
     if (key === this.vX.SEP) {
-      console.log('move to next');
       this.moveToNext(index);
     }
 

@@ -1,0 +1,8 @@
+<i *ngFor="let i of contexts; let idx = index"
+  (click)="setRate(idx + 1)"
+  (mouseenter)="enter(idx + 1)"
+  class="fa"
+  [class.fa-star]="showRated(idx)"
+  [class.fa-star-o]="!showRated(idx)"
+  aria-hidden="true"
+></i>

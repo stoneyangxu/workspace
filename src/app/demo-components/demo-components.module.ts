@@ -28,6 +28,7 @@ import { MyRadioGroupDirective } from './my-radio-group/my-radio-group.directive
 import { MyRadioDirective } from './my-radio-group/my-radio.directive';
 import { MyDropdownDirective } from './my-dropdown/my-dropdown.directive';
 import { MyDropdownButtonDirective } from './my-dropdown/my-dropdown-button.directive';
+import { MyRatingComponent } from './my-rating/my-rating.component';
 
 @NgModule({
   imports: [
@@ -61,7 +62,8 @@ import { MyDropdownButtonDirective } from './my-dropdown/my-dropdown-button.dire
     MyRadioGroupDirective,
     MyRadioDirective,
     MyDropdownDirective,
-    MyDropdownButtonDirective
+    MyDropdownButtonDirective,
+    MyRatingComponent
   ],
   entryComponents: [
     DisplayTimeComponent,

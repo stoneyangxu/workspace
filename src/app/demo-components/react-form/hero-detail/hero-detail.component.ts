@@ -29,8 +29,6 @@ export class HeroDetailComponent implements OnInit {
     const addressFormArray = this.fb.array(addressesGroups);
 
     this.heroForm.setControl('secretLairs', addressFormArray);
-
-    console.log(this.heroForm.get('secretLairs'));
   }
 
   get secretLairs() {
